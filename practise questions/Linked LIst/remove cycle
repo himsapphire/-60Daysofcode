@@ -1,0 +1,26 @@
+Node* slow=head;
+        Node* fast=head;int c=0;
+        Node* prev=head;;
+        while(fast!=NULL and fast->next!=NULL){
+            fast=fast->next->next;
+            //determining the node from where we would break link if cycle present
+            prev=slow;
+            slow=slow->next;
+            if(fast==slow)
+             {
+                 c++;
+                 break;
+             }
+            
+        }
+        if(c==1){
+        slow=head;
+        
+        while(slow!=fast){
+            
+            slow=slow->next;
+            prev=prev->next;
+            fast=fast->next;
+            
+        }
+        prev->next =NULL;}
