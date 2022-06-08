@@ -1,0 +1,42 @@
+iterative 0[n]
+
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode *previous = NULL;
+        
+        while(head)
+        {
+            ListNode *n = head->next;
+            head->next = previous;
+            previous = head;
+            head = next;
+        }
+        return previous;
+    }
+};
+
+
+
+
+recursive o(n) space and o(n)t.c.
+
+
+class Solution {
+public:
+    
+    ListNode* reverseList(ListNode* head) {
+        if(head==NULL or head->next==NULL)
+            return head;
+        
+        //telling recursion to reverse from head->next and return and store it to newhead
+        ListNode* newhead=reverseList(head->next);
+        //putting the head to newnode's last
+        head->next->next=head;
+        //assigning null to the end node
+        head->next=NULL;
+        //returning new head
+        return newhead;
+    }
+};

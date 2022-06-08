@@ -1,0 +1,37 @@
+1.merge sort(nlogn) + linearly remove duplicates  o(n)
+
+
+2.hashmap  o(n)
+
+
+class Solution
+{
+    public:
+    //Function to remove duplicates from unsorted linked list.
+    Node * removeDuplicates( Node *head) 
+    {
+     // your
+     //hash to store values
+     unordered_set<int> seen;
+     Node* curr=head;
+     Node* prev= NULL;
+     while(curr!=NULL){
+         //if already present in hash
+         if(seen.find(curr->data)!=seen.end())
+            {
+                //store next value befor deleting
+             prev->next=curr->next;
+             delete curr;
+                
+            }         
+         else{
+             //insert value in hash if not present and update prev so that it can store curr next 
+             //rhe next time it incurs duplicate
+             seen.insert(curr->data);
+             prev=curr;
+         }
+         curr=curr->next;
+     }
+     return head;
+    }
+};
