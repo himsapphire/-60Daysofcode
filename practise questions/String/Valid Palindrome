@@ -1,0 +1,23 @@
+O(n)  t.c.
+O(n)  s.c.
+
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        string temp; int j=0;
+        for(int i=0;i<s.size();i++){
+            if(s[i]>='A' && s[i]<='Z')
+                temp+=tolower(s[i]);
+            else if(s[i]>='a' && s[i]<='z')
+                temp+=s[i];
+            else
+                continue;
+        }
+        string t2=temp;;
+        if(t2==reverse(temp.begin(),temp.end()))
+            return true;
+        else
+            return false;
+        
+    }
+};
