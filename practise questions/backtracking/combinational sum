@@ -1,0 +1,45 @@
+static void solve(vector<int> A, int B, vector<vector<int>> &ans, vector<int> &v,int i,int n)
+    {
+        //base cases
+        if(i==n)
+         return;
+        
+        
+        if( B==0)
+              {
+                 ans.push_back(v);
+                 return;             
+               }   
+              
+        //1.picking that element
+        //picking only when the value in arr less than our resultant target
+        if(A[i]<=B){
+        v.push_back(A[i]);
+        solve(A,B-A[i],ans,v,i,n);
+        v.pop_back();}
+        
+        //2.not picking that element
+        solve(A,B,ans,v,i+1,n);
+        
+        
+    }
+    
+    vector<vector<int> > combinationSum(vector<int> &A, int B) {
+        // Your code here
+        
+        //now,lets remove duplicates
+        set<int> s;
+        for(auto x:A)
+           s.insert(x);
+        
+        A.clear();
+        for(auto x:s)
+          A.push_back(x);
+        int n;
+        n=A.size();
+        vector<int> v;
+        vector<vector<int>> ans;
+        solve(A,B,ans,v,0,n);
+        return ans;
+    }
+};
