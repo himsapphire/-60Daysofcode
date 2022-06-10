@@ -1,0 +1,31 @@
+1. brute force
+would be to iterate the whole array to find smaller for each array
+t.c.=O(n2)  s.c=O(1)
+
+
+2.using stack
+
+t.c.=O(n)  and s.c.=O(n) stack space
+
+vector<long long> nextLargerElement(vector<long long> arr, int n){
+        // Your code
+      stack<long long>s;
+      vector<long long> p;long long ps[n];
+      /*since ques asked for next,therefore
+      iterating from left of array*/
+	  for(int i=n-1;i>=0;i--){
+	  while(!s.empty() and s.top()<=arr[i])
+	     s.pop();
+	  if(s.empty())
+	    ps[i]=-1;
+	  else
+	    ps[i]=s.top();
+
+		s.push(arr[i]);	 
+	  
+
+      }
+      for(int i=0;i<n;i++)
+      p.push_back(ps[i]);
+      return p;
+    }
