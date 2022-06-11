@@ -1,0 +1,49 @@
+O(nlogn)
+
+class Solution{
+  public:
+    //Function to sort the given linked list using Merge Sort.
+    Node* merge(Node* a, Node*  b){
+        //base cases
+        if(a==NULL)
+           return b;
+        if(b==NULL)
+           return a;
+           
+        Node* c=NULL;
+        if(a->data <= b->data)
+            {
+                c=a;
+                c->next=merge(a->next,b);
+            }
+        else{
+            c=b;
+            c->next=merge(a,b->next);
+        }
+        return c;
+    }
+    Node* mergeSort(Node* head) {
+        
+        // your code here
+        //1.divide
+        //basecase
+        if(head==NULL or head->next==NULL){
+            return head;
+        }
+        
+        Node* fast=head;
+        Node* slow=head;
+        while(fast!=NULL and fast->next!=NULL){
+            fast=fast->next->next;
+            slow=slow->next;
+        }
+        Node* newhead=slow->next;
+        slow->next=NULL;
+        
+        
+        head=mergeSort(head);
+        newhead=mergeSort(newhead);
+        Node* d=merge(head,newhead);
+        return d;
+    }
+};
