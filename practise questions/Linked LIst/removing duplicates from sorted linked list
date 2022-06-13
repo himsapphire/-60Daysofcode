@@ -1,0 +1,93 @@
+traversing and removing the duplicate node, but before deleting the node, storing its next's address 
+t.c O(n)   s.c=O(1)
+Node *removeDuplicates(Node *head)
+{
+ // your code goes here
+  Node* curr=head;
+  Node* tofree;
+  //iterate till last node
+  while(curr->next){
+      if(curr->data==curr->next ->data)
+         {
+             tofree=curr->next->next;
+             free(curr->next);
+             curr->next=tofree;
+         }
+         else
+           curr=curr->next;
+  }
+  
+  
+  
+  
+     
+    return head;
+}
+
+
+
+2. method
+recursive
+phela do node k krdo, recursion will take care of the next.
+t.c. O(n),   s.c.  O(n)
+
+/* do nothing if the list is empty */
+	if (head == NULL or head->next==NULL)
+		return;
+
+	/* Traverse the list till last node */
+
+
+		/* Compare head node with next node */
+		if (head->data == head->next->data)
+		{
+			/* The sequence of steps is important.
+			to_free pointer stores the next of head
+			pointer which is to be deleted.*/
+			to_free = head->next;
+		head->next = head->next->next;
+		free(to_free);
+		removeDuplicates(head);
+		}
+		else /* This is tricky: only
+		advance if no deletion */
+		{
+			removeDuplicates(head->next);
+		}
+    
+    
+    
+    3. another traversal method , where u keep pointers at new occurences only and then connect them
+    t.c.  O(n)    s.c. O(1)
+ 
+ 
+    Node *removeDuplicates(Node *head)
+{
+ // your code goes here
+ if(head==NULL or head->next==NULL)
+    return head;
+    
+    
+Node* slow=head;
+Node* fast= head->next;
+Node* prev=fast;
+while(fast!=NULL){
+    if(slow->data==fast->data)
+       {   
+        //to keep track of last value of fast before null   
+           prev=fast;
+//set the fast pointer to the point where data isnt same
+        fast=fast->next;}
+    else{
+        //slow of next will now point to new data
+        slow->next=fast;
+        slow=slow->next;
+        fast=fast->next;
+    }    
+}
+//edge case if last nodes are duplicates (very imp)
+ if(prev->data==slow->data )
+     slow->next=NULL;
+       
+      return head; 
+}
