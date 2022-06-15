@@ -1,0 +1,45 @@
+t.c.  O(m+n)  s.c. O(1)
+
+int count(Node * head){
+Node* temp=head;
+int c=0;
+while(temp){
+    temp=temp->next;
+    c++;
+    
+}
+
+return c;
+
+}
+int intersectPoint(Node* head1, Node* head2)
+{
+    // Your Code Here
+    int c1= count(head1);
+    int c2=count(head2);
+    int d=abs(c1-c2);
+    //node to iterate bigger list
+    Node* temp;
+    //to iterate smaller list
+    Node* smaller;
+    if(c1>c2){
+        temp=head1;
+        smaller=head2;
+    }
+    else{
+        temp=head2;
+        smaller=head1;
+    }
+    iterating bigger til both LL become equal
+    while(d){
+            temp=temp->next;
+            d--;
+        }
+        while(temp!=smaller){
+            temp=temp->next;
+            smaller=smaller->next;
+        }
+        return temp->data;
+    
+}
+
