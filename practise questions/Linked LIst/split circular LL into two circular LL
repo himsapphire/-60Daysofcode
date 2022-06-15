@@ -1,0 +1,37 @@
+t.c. O(n)    s.c.=O(1)
+
+
+
+void splitList(Node *head, Node **head1_ref, Node **head2_ref)
+{
+    // your code goes here
+    *head1_ref=head;
+    Node* slow=head;
+    Node* fast=head->next;
+    //finding middle of LL
+    // just change the condition from NULL to head
+    //as its circular LL.
+    while(fast!=head and fast->next!=head)
+    {
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    Node* head2=slow->next;
+    slow->next=head;
+    //now iterating the remaining list using same slow pointer
+    slow=head2;
+    *head2_ref=head2;
+    while(slow->next!=head){
+        slow=slow->next;
+    }
+    slow->next=head2;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
