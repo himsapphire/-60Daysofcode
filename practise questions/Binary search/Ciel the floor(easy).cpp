@@ -27,11 +27,15 @@ int main() {
 pair<int,int> bs(int arr[],int s,int e,int x,int n){
     
     if(s>e){
+        //corner cases
+        //1. if no floor in the array
         if(e==-1)
           return make_pair(-1,arr[s]);
+        //2. if no ceil in the array
         else if(s==n)
           return make_pair(arr[e],-1);
         else
+            //last is if both present in the array
           return make_pair(arr[e],arr[s]);
     }
     
@@ -48,6 +52,7 @@ pair<int, int> getFloorAndCeil(int arr[], int n, int x) {
     // code here
     sort(arr,arr+n);
     if(n==1){
+        //if array has one element
         if(arr[0]<x)
            return make_pair(arr[0],-1);
         else
