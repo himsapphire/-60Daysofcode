@@ -40,6 +40,7 @@ int findKRotation(int arr[], int n) {
 	    }
 	    //for strictly increasing array(i.e if array is not rotated)
 	    
+	    //since if the first part of array is sorted we move s=mid+1, if its trictly increasing we will end up with s=n
 	    if(s==n)
 	      return 0;
 	}
