@@ -4,6 +4,7 @@ using namespace std;
 
 // } Driver Code Ends
 
+//last occur
 int sb(int arr[],int n,int s,int e,int x){
     if(s>e)
       return e;
@@ -16,6 +17,7 @@ int sb(int arr[],int n,int s,int e,int x){
       return sb(arr,n,mid+1,e,x);
 }
 
+//first occur
 int bs(int arr[],int n,int s,int e,int x){
     if(s>e)
       return s;
